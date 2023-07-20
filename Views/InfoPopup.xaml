@@ -1,0 +1,115 @@
+﻿<Window x:Class="EcommerceERPConnector_V1._0_.Views.InfoPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EcommerceERPConnector_V1._0_.Views"
+        mc:Ignorable="d"
+        Title="InfoPopup" Height="450" Width="800"
+        Background="Transparent" 
+        AllowDrop="True"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseDown="Window_MouseDown"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" >
+    
+    <Border CornerRadius="50">
+        <Border.Background>
+            <ImageBrush  ImageSource=".././Images/loginbg.jpg"
+                         Stretch="None"/>
+        </Border.Background>
+
+        <Border
+        CornerRadius ="20"
+        BorderThickness="5"
+        Opacity="0.95">
+
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#462AD8" Offset="0"/>
+                    <GradientStop Color="#DA34AE" Offset="0.75"/>
+                    <GradientStop Color="#8A16C1" Offset="1"/>
+
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#060531" Offset="0"/>
+                    <GradientStop Color="#1B1448" Offset="0.75"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition />
+                    <RowDefinition Height="0*"/>
+                </Grid.RowDefinitions>
+                <Grid Margin="38,0,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock  Text="INFO"
+                                Foreground="DarkGray"
+                                FontSize="18"
+                                Grid.Column="0"
+                                VerticalAlignment="Top"
+                                Margin="-14,6,0,0" Height="24"/>
+
+                    <Button     x:Name="btnMinimize"
+                                Background="#28AEED"
+                                BorderThickness="0"
+                                Content="-"
+                                Foreground="White"
+                                FontSize="16"
+                                Cursor="Hand"
+                                Grid.Column="1"
+                                Click="btnMinimize_Click">
+
+                    </Button>
+
+                    <Button     x:Name="btnClose"
+                                Background="#DA34AE"
+                                BorderThickness="0"
+                                Content="X"
+                                Foreground="White"
+                                FontSize="16"
+                                Cursor="Hand"
+                                Grid.Column="2"
+                                Click="btnClose_Click">
+                    </Button>
+                </Grid>
+                <StackPanel     Grid.Row="1"
+                                Orientation="Horizontal"
+                                Margin="10,93,525,30"/>
+
+                <TextBlock  HorizontalAlignment="Left" 
+                            Margin="72,124,0,0" 
+                            Grid.Row="1" 
+                            Name="content"
+                            Foreground="White"
+                            FontSize="15"
+                            FontWeight="Medium"
+                            FontFamily="Montserrat"
+                            TextWrapping="Wrap" 
+                            Text="TextBlock" 
+                            VerticalAlignment="Top" Width="399" Height="80"/>
+                <Label      Content="Label"
+                            Name="type"
+                            Foreground="White"
+                            FontSize="25"
+                            FontWeight="Bold"
+                            FontFamily="Montserrat"
+                            HorizontalAlignment="Left" 
+                            Margin="231,41,0,0" 
+                            Grid.Row="1" 
+                            VerticalAlignment="Top" RenderTransformOrigin="0.646,-0.809"/>
+            </Grid>
+        </Border>
+    </Border>
+</Window>

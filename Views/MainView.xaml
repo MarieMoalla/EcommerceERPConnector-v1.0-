@@ -1,0 +1,221 @@
+﻿<Window x:Class="EcommerceERPConnector_V1._0_.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EcommerceERPConnector_V1._0_.Views"
+        mc:Ignorable="d"
+        Title="MainView" Height="450" Width="800"
+        
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseDown="Window_MouseDown"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Border CornerRadius="50">
+        <Border.Background>
+            <ImageBrush  ImageSource=".././Images/loginbg.jpg"
+                         Stretch="None"/>
+        </Border.Background>
+
+        <Border
+        CornerRadius ="20"
+        BorderThickness="5"
+        Opacity="0.95">
+
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#462AD8" Offset="0"/>
+                    <GradientStop Color="#DA34AE" Offset="0.75"/>
+                    <GradientStop Color="#8A16C1" Offset="1"/>
+
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#060531" Offset="0"/>
+                    <GradientStop Color="#1B1448" Offset="0.75"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="399*" />
+                    <RowDefinition Height="11*"/>
+                    <RowDefinition Height="0*"/>
+                </Grid.RowDefinitions>
+                <Grid Margin="38,0,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock  Text="CONNECTOR"
+                                Foreground="DarkGray"
+                                FontSize="18"
+                                Grid.Column="0"
+                                VerticalAlignment="Top"
+                                Margin="-14,6,0,0" Height="24"/>
+
+                    <Button     x:Name="btnMinimize"
+                                Background="#28AEED"
+                                BorderThickness="0"
+                                Content="-"
+                                Foreground="White"
+                                FontSize="16"
+                                Cursor="Hand"
+                                Grid.Column="1"
+                                Click="btnMinimize_Click">
+
+                    </Button>
+
+                    <Button     x:Name="btnClose"
+                                Background="#DA34AE"
+                                BorderThickness="0"
+                                Content="X"
+                                Foreground="White"
+                                FontSize="16"
+                                Cursor="Hand"
+                                Grid.Column="2"
+                                Click="btnClose_Click">
+                    </Button>
+                </Grid>
+                <Border  CornerRadius ="70"/>
+                <Border     Margin="-1,2,534,0" 
+                            Padding="5" 
+                            Background="#8A16C1" 
+                            BorderBrush="SteelBlue" 
+                            CornerRadius="20"
+                            VerticalAlignment="Top" Height="409" Grid.Row="1" Grid.RowSpan="3">
+                    <StackPanel Height="159" Margin="304,0,0,0">
+
+                    </StackPanel>
+                </Border>
+                <TextBlock   HorizontalAlignment="Left" 
+                             Margin="14,57,0,0" 
+                             FontSize="20"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"
+                             Grid.Row="1" 
+                             TextWrapping="Wrap" 
+                             Text="Retrive Table columns" 
+                             VerticalAlignment="Top"/>
+                <TextBlock   HorizontalAlignment="Left" 
+                             Margin="36,212,0,0" 
+                             FontSize="15"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"
+                             Grid.Row="1" 
+                             TextWrapping="Wrap" 
+                             Text="E-Commerce Endpoint" 
+                             VerticalAlignment="Top"/>
+                <TextBox     HorizontalAlignment="Left" 
+                             Margin="33,237,0,0" 
+                             Name="ecommerceGet"
+                             Grid.Row="1" 
+                             TextWrapping="Wrap" 
+                             Text="URL..." 
+                             VerticalAlignment="Top" 
+                             Width="177"/>
+                <TextBlock   HorizontalAlignment="Left" 
+                    Margin="75,275,0,0" 
+                    FontSize="15"
+                    FontWeight="Medium"
+                    FontFamily="Montserrat"
+                    Grid.Row="1" 
+                    TextWrapping="Wrap" 
+                    Text="ERP Endpoint" 
+                    VerticalAlignment="Top" RenderTransformOrigin="0.485,0.922"/>
+                <TextBox     
+                    HorizontalAlignment="Left" 
+                    Margin="35,302,0,0" 
+                    Name="erpGet"
+                    Grid.Row="1" 
+                    TextWrapping="Wrap" 
+                    Text="URL..." 
+                    VerticalAlignment="Top" 
+                    Width="177"/>
+                <Button  
+                    Content="Send request" 
+                    HorizontalAlignment="Left" 
+                    Margin="87,380,0,0" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Top" Click="Button_Click"/>
+                <Image 
+                    Source=".././Images/table.png"
+                    HorizontalAlignment="Left" 
+                    Height="100" 
+                    Margin="69,97,0,0" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Top" 
+                    Width="100"/>
+
+                <DataGrid 
+                    Grid.Row="1" 
+                    Margin="275,46,16,80" 
+                    Name="dataTable"
+                    ItemsSource="{Binding Item}" 
+                    CanUserResizeColumns="True" 
+                    CanUserResizeRows="False" CanUserSortColumns="True"
+                    AutoGenerateColumns="False"
+                    >
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" 
+                                            Value="#8A16C1"/>
+                            <Setter Property="FontSize" Value="10"/>
+                            <Setter Property="FontFamily" Value="Montserrat"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="BorderBrush" Value="Aqua" />
+                            <Setter Property="BorderThickness" Value="1 1 1 1" />
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=erpObj}" FontSize="10" Header="New Object" Width="*"/>
+                        <DataGridCheckBoxColumn Binding="{Binding Path=isEmpty}" Header="Is Empty" Width="*" />
+                        <DataGridCheckBoxColumn Binding="{Binding Path=isRemoved}" Header="Remove from Json" Width="*" />
+
+                        <DataGridTextColumn Binding="{Binding Path=manualInput}" FontSize="10" Header="Manual Input" Width="*" />
+                        <!--<DataGridComboBoxColumn ItemsSource="{Binding ecommerceObjList}" Header="Original Value" Width="*" />-->
+
+                        <DataGridTemplateColumn Header="Original Value" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox   ItemsSource="{Binding ecommerceObjList}" 
+                                                SelectedValue="{Binding ecommerceObj}"
+                                                SelectedItem="{Binding ecommerceObj}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn  Header="Constraint &#x0a; Location" Width="*" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate >
+                                    <ComboBox Name="cmb2" ItemsSource="{Binding constraints}" 
+                                              
+                                                SelectedValue="{Binding constraint}"
+                                                SelectedItem="{Binding constraint}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Binding="{Binding Path=cinstraintValue}" FontSize="10" Header="Extention &#x0a; Value" Width="*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBlock HorizontalAlignment="Left" Margin="274,329,0,0" FontSize="13" Grid.Row="1" TextWrapping="Wrap" Text="To add a variable value into your generated object write it inside two curly brackets ' {} '." VerticalAlignment="Top" Background="Aqua" TextAlignment="Center" Width="502" Height="21"/>
+                <Button Content="Generate Object" HorizontalAlignment="Left" Margin="682,378,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="1.82,0.977" Height="19" Width="100" Click="Button_Click_1"/>
+                <TextBox HorizontalAlignment="Left" Name="getListEndpoint" Margin="283,353,0,0" Grid.Row="1" TextWrapping="Wrap" Text="[E-Commerce] Get Endpoitn from which data will be read..." VerticalAlignment="Top" Width="319" Height="20"/>
+                <TextBox HorizontalAlignment="Left" Name="PostListEndpoint" Margin="282,379,0,0" Grid.Row="1" TextWrapping="Wrap" Text="[ERP] Post Endpoint to add new etires" VerticalAlignment="Top" Width="207" Height="20" RenderTransformOrigin="0.492,0.446"/>
+            </Grid>
+        </Border>
+    </Border>
+
+</Window>

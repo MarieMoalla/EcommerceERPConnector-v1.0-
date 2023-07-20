@@ -1,0 +1,338 @@
+﻿<Window x:Class="EcommerceERPConnector_V1._0_.Views.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EcommerceERPConnector_V1._0_.Views"
+        mc:Ignorable="d"
+        Title="Authentication" Height="550" Width="800"
+        
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseDown="Window_MouseDown"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    
+            <Border CornerRadius="50">
+        <Border.Background>
+            <ImageBrush  ImageSource=".././Images/loginbg.jpg"
+                         Stretch="None"/>
+        </Border.Background>
+
+        <Border
+        CornerRadius ="20"
+        BorderThickness="5"
+        Opacity="0.95">
+
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#462AD8" Offset="0"/>
+                    <GradientStop Color="#DA34AE" Offset="0.75"/>
+                    <GradientStop Color="#8A16C1" Offset="1"/>
+
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#060531" Offset="0"/>
+                    <GradientStop Color="#1B1448" Offset="0.75"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition />
+                    <RowDefinition Height="0*"/>
+                </Grid.RowDefinitions>
+                <Grid Margin="38,0,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock  Text="LOG IN"
+                                Foreground="DarkGray"
+                                FontSize="18"
+                                Grid.Column="0"
+                                VerticalAlignment="Top"
+                                Margin="-14,6,0,0" Height="24"/>
+
+                    <Button     x:Name="btnMinimize"
+                                Background="#28AEED"
+                                BorderThickness="0"
+                                Content="-"
+                                Foreground="White"
+                                FontSize="16"
+                                Cursor="Hand"
+                                Grid.Column="1"
+                                Click="btnMinimize_Click">
+
+                    </Button>
+
+                    <Button     x:Name="btnClose"
+                                Background="#DA34AE"
+                                BorderThickness="0"
+                                Content="X"
+                                Foreground="White"
+                                FontSize="16"
+                                Cursor="Hand"
+                                Grid.Column="2"
+                                Click="btnClose_Click">
+                    </Button>
+                </Grid>
+
+                <StackPanel
+                                Grid.Row="1"
+                                Orientation="Vertical"
+                                Margin="38,109,525,132">
+                    <Image Source=".././Images/logopng.png"/>
+                    <TextBlock Text="ERP/E-Commerce Connector "
+                               Foreground="White"
+                               FontSize="25"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               TextWrapping="Wrap"
+                               TextAlignment="left"
+                               Height="64" Width="304"/>
+                    <TextBlock Text="Generate costumized connection for any type sof system!"
+                               Foreground="LightGray"
+                               FontSize="15"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               TextWrapping="Wrap"
+                               TextAlignment="left" Height="64"
+                               />
+                </StackPanel>
+
+                <StackPanel     Grid.Row="1"
+                                Orientation="Horizontal"
+                                Margin="10,93,525,30"/>
+
+
+
+                <Button     Content="Authenticate >>" 
+                            Name="authenticate"
+                            Foreground="White"
+                            HorizontalAlignment="Left" 
+                            Margin="515,473,0,0" 
+                            Grid.Row="1" 
+                            VerticalAlignment="Top"
+                            Background="Transparent" Click="authenticate_Click">
+                </Button>
+
+                <!--#region E-Commerce-->
+                <TextBlock  HorizontalAlignment="Left" 
+                            Margin="512,11,0,0" 
+                            Foreground="DarkGray"
+                            FontSize="15"
+                            FontWeight="Medium"
+                            FontFamily="Montserrat"
+                            Grid.Row="1" 
+                            Text="E-Commerce" 
+                            VerticalAlignment="Top"/>
+                <TextBlock      Text="Chose authentication method"
+                                Foreground="DarkGray"
+                                FontSize="12"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Grid.Row="1" 
+                                TextWrapping="Wrap" Margin="410,47,55,444" />
+                <ComboBox       Name="combobox1" 
+                                Grid.Row="1" 
+                                Height="23" 
+                                Width="304" 
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Top" Margin="410,69,0,0">
+                    <ComboBoxItem Content="No Auth" IsSelected="true"/>
+                    <ComboBoxItem Content="Bearer Token"/>
+                    <ComboBoxItem Content="Basic Auth"/>
+
+                </ComboBox>
+                <TextBlock   
+                    Text="Site URL"
+                    Foreground="DarkGray"
+                    FontSize="12"
+                    FontWeight="Medium"
+                    FontFamily="Montserrat"
+                    Grid.Row="1" 
+                    TextWrapping="Wrap" Margin="410,100,54,392" >
+                </TextBlock>
+                <TextBox    HorizontalAlignment="Left" 
+                            Name="ecommerceUrl"
+                            Margin="410,118,0,0" 
+                            Grid.Row="1" 
+                            TextWrapping="Wrap" 
+                            Text="" 
+                            VerticalAlignment="Top" 
+                            Width="304" 
+                            Height="22" />
+                <TextBox    HorizontalAlignment="Left" 
+                            Margin="411,145,0,0" 
+                            Name="ecommerceEmailFormt"
+                            Grid.Row="1" 
+                            TextWrapping="Wrap" 
+                            Text="email" 
+                            VerticalAlignment="Top" 
+                            Width="142" 
+                            Height="22"/>
+
+                <TextBox    HorizontalAlignment="Left" 
+                            Margin="573,145,0,0" 
+                            Name="ecommercePasswordFormat"
+                            Grid.Row="1" 
+                            TextWrapping="Wrap" 
+                            Text="password" 
+                            VerticalAlignment="Top" 
+                            Width="142" 
+                            Height="22"/>
+                <TextBlock   
+                    Text="User name"
+                    Foreground="DarkGray"
+                    FontSize="12"
+                    FontWeight="Medium"
+                    FontFamily="Montserrat"
+                    Grid.Row="1" 
+                    TextWrapping="Wrap" Margin="411,187,237,303" >
+                </TextBlock>
+
+                <TextBox    HorizontalAlignment="Left" 
+                            Margin="411,205,0,0" 
+                            Grid.Row="1" 
+                            Name="ecommerceEmail"
+                            TextWrapping="Wrap" 
+                            VerticalAlignment="Top" 
+                            Width="142" 
+                            Height="22"/>
+                <TextBlock   
+                    Text="Password"
+                    Foreground="DarkGray"
+                    FontSize="12"
+                    FontWeight="Medium"
+                    FontFamily="Montserrat"
+                    Grid.Row="1" 
+                    TextWrapping="Wrap" Margin="574,187,75,307" >
+                </TextBlock>
+                <TextBox    HorizontalAlignment="Left" 
+                            Margin="573,205,0,0" 
+                            Grid.Row="1" 
+                            Name="ecommercePassword"
+                            TextWrapping="Wrap" 
+                            VerticalAlignment="Top" 
+                            Width="142" 
+                            Height="22"/>
+                <!--#endregion-->
+
+                <!--#region ERP-->
+                <TextBlock  HorizontalAlignment="Left" 
+                            Margin="545,0,0,0" 
+                            Foreground="DarkGray"
+                            FontSize="15"
+                            FontWeight="Medium"
+                            FontFamily="Montserrat"
+                            Grid.Row="1" 
+                            Text="ERP" 
+                            VerticalAlignment="Center"/>
+                <TextBlock      Text="Chose authentication method"
+                                Foreground="DarkGray"
+                                FontSize="12"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Grid.Row="1" 
+                                TextWrapping="Wrap" Margin="410,277,55,214" />
+                <ComboBox       Name="combobox2" 
+                                Grid.Row="1" 
+                                Height="23" 
+                                Width="304" 
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Top" Margin="410,299,0,0" >
+                    <ComboBoxItem Content="No Auth" IsSelected="true"/>
+                    <ComboBoxItem Content="Bearer Token"/>
+                    <ComboBoxItem Content="Basic Auth"/>
+
+                </ComboBox>
+                <TextBlock   
+                    Text="Site URL"
+                    Foreground="DarkGray"
+                    FontSize="12"
+                    FontWeight="Medium"
+                    FontFamily="Montserrat"
+                    Grid.Row="1" 
+                    TextWrapping="Wrap" Margin="410,330,54,162" >
+                </TextBlock>
+                <TextBox    HorizontalAlignment="Left" 
+                            Name="erpUrl"
+                            Margin="410,348,0,0" 
+                            Grid.Row="1" 
+                            TextWrapping="Wrap" 
+                            Text="" 
+                            VerticalAlignment="Top" 
+                            Width="304" 
+                            Height="22"/>
+                <TextBox    HorizontalAlignment="Left" 
+                            Name="erpEmailFormat"
+                            Margin="411,375,0,0" 
+                            Grid.Row="1" 
+                            TextWrapping="Wrap" 
+                            Text="email" 
+                            VerticalAlignment="Top" 
+                            Width="142" 
+                            Height="22"/>
+
+                <TextBox    HorizontalAlignment="Left" 
+                            Margin="573,375,0,0" 
+                            Name="erpPasswordFormat"
+                            Grid.Row="1" 
+                            TextWrapping="Wrap" 
+                            Text="password" 
+                            VerticalAlignment="Top" 
+                            Width="142" 
+                            Height="22"/>
+                <TextBlock   
+                    Text="User name"
+                    Foreground="DarkGray"
+                    FontSize="12"
+                    FontWeight="Medium"
+                    FontFamily="Montserrat"
+                    Grid.Row="1" 
+                    TextWrapping="Wrap" Margin="411,417,237,73" >
+                </TextBlock>
+
+                <TextBox    HorizontalAlignment="Left" 
+                            Margin="411,435,0,0" 
+                            Grid.Row="1" 
+                            Name="erpEmail"
+                            TextWrapping="Wrap" 
+                            VerticalAlignment="Top" 
+                            Width="142" 
+                            Height="22"/>
+                <TextBlock   
+                    Text="Password"
+                    Foreground="DarkGray"
+                    FontSize="12"
+                    FontWeight="Medium"
+                    FontFamily="Montserrat"
+                    Grid.Row="1" 
+                    TextWrapping="Wrap" Margin="574,417,75,77" >
+                </TextBlock>
+                <TextBox    HorizontalAlignment="Left" 
+                            Margin="573,435,0,0" 
+                            Grid.Row="1" 
+                            Name="erpPassword"
+                            TextWrapping="Wrap" 
+                            VerticalAlignment="Top" 
+                            Width="142" 
+                            Height="22"/>
+                <!--#endregion-->
+
+
+
+            </Grid>
+        </Border>
+    </Border>
+
+</Window>
+
