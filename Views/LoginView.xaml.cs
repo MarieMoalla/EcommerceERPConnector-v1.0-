@@ -74,12 +74,13 @@ namespace EcommerceERPConnector_V1._0_.Views
         #region Events
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            WindowState = WindowState.Minimized;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            WindowState = WindowState.Minimized;
+            base.OnClosed(e);
+            Application.Current.Shutdown();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
