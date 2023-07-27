@@ -524,7 +524,7 @@ public class EcommerceObj
                 // Set the assembly file name to generate.
                 parameters.OutputAssembly = "Out.exe";
                 parameters.IncludeDebugInformation = true;
-                parameters.ReferencedAssemblies.AddRange(new string[] { "System.Threading.Tasks.Extensions.dll", "Microsoft.Extensions.DependencyInjection.Abstractions.dll", "Microsoft.Extensions.DependencyInjection.dll", "Microsoft.Extensions.Hosting.dll", "Microsoft.Extensions.Hosting.Abstractions.dll", "System.IO.dll", "System.Text.RegularExpressions.dll", "System.dll", "System.Net.dll", "Newtonsoft.Json.dll", "System.Core.dll", "Microsoft.CSharp.dll", "System.Collections.dll", "System.Linq.dll" });
+                parameters.ReferencedAssemblies.AddRange(new string[] { "System.Runtime.dll", "System.Threading.Tasks.Extensions.dll", "Microsoft.Extensions.DependencyInjection.Abstractions.dll", "Microsoft.Extensions.DependencyInjection.dll", "Microsoft.Extensions.Hosting.dll", "Microsoft.Extensions.Hosting.Abstractions.dll", "System.IO.dll", "System.Text.RegularExpressions.dll", "System.dll", "System.Net.dll", "Newtonsoft.Json.dll", "System.Core.dll", "Microsoft.CSharp.dll", "System.Collections.dll", "System.Linq.dll" });
                 // Save the assembly as a physical file.
                 parameters.GenerateInMemory = true;
                 //parameters.TempFiles = new TempFileCollection(outputPath, true);

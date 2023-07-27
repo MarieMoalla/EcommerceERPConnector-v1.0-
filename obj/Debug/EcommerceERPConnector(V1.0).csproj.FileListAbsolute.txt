@@ -44,7 +44,6 @@ C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\obj\Debug\EcommerceERPConnect
 C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\obj\Debug\EcommerceERPConnector(V1.0).csproj.CopyComplete
 C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\obj\Debug\EcommerceERPConnector(V1.0).exe
 C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\obj\Debug\EcommerceERPConnector(V1.0).pdb
-C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
 C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll
 C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\bin\Debug\Microsoft.AspNetCore.Http.dll
 C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\bin\Debug\Microsoft.AspNetCore.Http.Extensions.dll
@@ -78,7 +77,6 @@ C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\bin\Debug\System.Reflection.M
 C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\bin\Debug\System.Text.Encodings.Web.dll
 C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\bin\Debug\System.Threading.Tasks.Extensions.dll
-C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
 C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\bin\Debug\Microsoft.AspNetCore.Http.xml
 C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\bin\Debug\Microsoft.AspNetCore.Http.Abstractions.xml
 C:\Users\Marie\Desktop\EcommerceERPConnector-v1.0-\bin\Debug\Microsoft.AspNetCore.Http.Extensions.xml
