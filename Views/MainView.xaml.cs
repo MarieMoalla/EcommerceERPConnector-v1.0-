@@ -44,7 +44,7 @@ namespace EcommerceERPConnector_V1._0_.Views
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            
+
             base.OnClosed(e);
             Application.Current.Shutdown();
         }
@@ -80,13 +80,13 @@ namespace EcommerceERPConnector_V1._0_.Views
         {
             try
             {
-                    dynamic jsonObj = _operations.stringToJObject(_operations.getJsonString( url1, isEcom));
-                    Dictionary<string, dynamic> dict = new Dictionary<string, dynamic>();
-                    foreach (var j in jsonObj)
-                    {
-                        dict.Add(((JProperty)j).Name, ((Newtonsoft.Json.Linq.JValue)((Newtonsoft.Json.Linq.JContainer)j).First).Type);
-                    }
-                    return dict;
+                dynamic jsonObj = _operations.stringToJObject(_operations.getJsonString(url1, isEcom));
+                Dictionary<string, dynamic> dict = new Dictionary<string, dynamic>();
+                foreach (var j in jsonObj)
+                {
+                    dict.Add(((JProperty)j).Name, ((Newtonsoft.Json.Linq.JValue)((Newtonsoft.Json.Linq.JContainer)j).First).Type);
+                }
+                return dict;
             }
             catch (Exception e)
             {
@@ -164,6 +164,8 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EcommerceERPConnector_V1
 {
@@ -197,21 +199,22 @@ public class EcommerceObj
             public bool isEmpty { get; set; }
             public bool isRemoved { get; set; }
         }
-    class Program
+        public class Worker : BackgroundService
     {
-        static void Main(string[] args)
+        protected override async System.Threading.Tasks.Task ExecuteAsync(System.Threading.CancellationToken stoppingToken)
         {
-            
-
+            while (!stoppingToken.IsCancellationRequested)
+            {
             StreamReader r1 = new StreamReader(""E:\\Projects\\Timsoft\\files\\_constraints.json"");
             string json1 = r1.ReadToEnd();
             List<Root> result1 = JsonConvert.DeserializeObject<List<Root>>(json1);
 
-            Console.WriteLine(getData(result1," + "\""+  getListUrl + "\" , " + "\"" + postListUrl + "\" , "+"\"" + getERPList + "\" ," +"\"" + settings["ecommerceToken"].Value+"\""+","+ settings["erpToken"].Value+ @"));
+            Console.WriteLine(getData(result1," + "\"" + getListUrl + "\"" + "," + "\"" + postListUrl + "\"" + "," + "\"" + getERPList + "\"" + "," + "\"" + settings["ecommerceToken"].Value + "\"" + "," + "\"" + settings["erpToken"].Value + "\"" + @"));
 
-            string x =Console.ReadLine();
+            await System.Threading.Tasks.Task.Delay(1000, stoppingToken);
+            }
         }
-        #region generate Json Default Value
+#region generate Json Default Value
         public static dynamic generattJsonDefaultValue(dynamic type)
         {
             string value = type.ToString();
@@ -272,14 +275,32 @@ public class EcommerceObj
                 string attribute;
                 dynamic value = null;
                 var _json = new JObject();
-                ";
-            JArray j = SourceGenerator_Sample(attributeList, getListUrl, postListUrl,getERPList, settings["ecommerceToken"].Value);
+                
+            ";
+            JArray j = SourceGenerator_Sample(attributeList, getListUrl, postListUrl, getERPList, settings["ecommerceToken"].Value);
             codeSource += @"
                     Console.WriteLine(jsonArray);
                     
                     return ""new"";
                     }
+        
                     }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+         IHost host = Host.CreateDefaultBuilder(args)
+            .ConfigureServices(services =>
+            {
+                services.AddHostedService<Worker>();
+            })
+            .Build();
+
+                    host.Run();
+
+            }
+        }
 }
                     ";
             BuildConnector("E:\\Projects\\Timsoft\\files\\EXE", codeSource);
@@ -361,76 +382,76 @@ public class EcommerceObj
               }
 
 ");
-                    JObject obj = (JObject)ecomList[ecomList.Count - newItems];
-                    Dictionary<string, dynamic> ecomObj = new Dictionary<string, dynamic>();
-                    //transfer each attribute into dictionarry
-                    foreach (var j in obj)
-                    {
-                        ecomObj.Add(j.Key, j.Value.ToString());
-                    };
-                    var _json = new JObject();
-                    _json = JObject.Parse(@"{ }");
-                    string attribute;
-                    
+                JObject obj = (JObject)ecomList[ecomList.Count - newItems];
+                Dictionary<string, dynamic> ecomObj = new Dictionary<string, dynamic>();
+                //transfer each attribute into dictionarry
+                foreach (var j in obj)
+                {
+                    ecomObj.Add(j.Key, j.Value.ToString());
+                };
+                var _json = new JObject();
+                _json = JObject.Parse(@"{ }");
+                string attribute;
 
-                    for (int i = 0; i < ecomObj.Count; i++)
-                    {
-                        //s.Append(@"
-                        //attribute = att.erpObj.Key;
-                        //");
-                        attribute = attributeList[i].erpObj.Key;
-                        dynamic value = null;
 
-                        //step 0
-                        if (!attributeList[i].isRemoved)
+                for (int i = 0; i < ecomObj.Count; i++)
+                {
+                    //s.Append(@"
+                    //attribute = att.erpObj.Key;
+                    //");
+                    attribute = attributeList[i].erpObj.Key;
+                    dynamic value = null;
+
+                    //step 0
+                    if (!attributeList[i].isRemoved)
+                    {
+                        //step1 1
+                        if (attributeList[i].isEmpty == true)
                         {
-                            //step1 1
-                            if (attributeList[i].isEmpty == true)
-                            {
-                                _json.Add(attribute, generattJsonDefaultValue(attributeList[i].erpObj.Value));
-                                //s.Append(@" _json.Add(attribute, generattJsonDefaultValue(att.erpObj.Value); ");
-                            }
-                            else
-                            {
-                                if (!string.IsNullOrEmpty(attributeList[i].manualInput))
-                                {
-                                    //test 2
-                                    value = replaceVariables(attributeList[i].manualInput, ecomObj);
-                                    //s.Append(@"value = replaceVariables(att.manualInput, ecomObj);");
-                                }
-                                if (!attributeList[i].ecommerceObj.Equals(default(KeyValuePair<string, dynamic>)))
-                                {
-                                    //test 3
-                                    value += ecomObj.Where(pair => pair.Key == attributeList[i].ecommerceObj.Key).ToList().FirstOrDefault().Value;
-                                    //s.Append("value += ecomObj.Where(pair => pair.Key == att.ecommerceObj.Key).ToList().FirstOrDefault().Value;");
-                                }
-
-
-                                //test 4 + 5
-                                switch (attributeList[i].constraint)
-                                {
-                                    case "None": break;
-                                    case "Start": value = attributeList[i].cinstraintValue + value; /*s.Append("value = att.cinstraintValue + value;");*/ break;
-                                    case "End": value = value + attributeList[i].cinstraintValue; /*s.Append("value = value + att.cinstraintValue;");*/ break;
-                                }
-                                //s.Append("_json.Add(attribute, value);value=null;}");
-                                _json.Add(attribute, value);
-                            }
+                            _json.Add(attribute, generattJsonDefaultValue(attributeList[i].erpObj.Value));
+                            //s.Append(@" _json.Add(attribute, generattJsonDefaultValue(att.erpObj.Value); ");
                         }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(attributeList[i].manualInput))
+                            {
+                                //test 2
+                                value = replaceVariables(attributeList[i].manualInput, ecomObj);
+                                //s.Append(@"value = replaceVariables(att.manualInput, ecomObj);");
+                            }
+                            if (!attributeList[i].ecommerceObj.Equals(default(KeyValuePair<string, dynamic>)))
+                            {
+                                //test 3
+                                value += ecomObj.Where(pair => pair.Key == attributeList[i].ecommerceObj.Key).ToList().FirstOrDefault().Value;
+                                //s.Append("value += ecomObj.Where(pair => pair.Key == att.ecommerceObj.Key).ToList().FirstOrDefault().Value;");
+                            }
 
+
+                            //test 4 + 5
+                            switch (attributeList[i].constraint)
+                            {
+                                case "None": break;
+                                case "Start": value = attributeList[i].cinstraintValue + value; /*s.Append("value = att.cinstraintValue + value;");*/ break;
+                                case "End": value = value + attributeList[i].cinstraintValue; /*s.Append("value = value + att.cinstraintValue;");*/ break;
+                            }
+                            //s.Append("_json.Add(attribute, value);value=null;}");
+                            _json.Add(attribute, value);
+                        }
                     }
-                    //s.Append("jsonArray.Add(_json);");
-                    jsonArray.Add(_json);
-                    //s.Append("newItems--;}");
-                    newItems--;
-                    codeSource +=s.ToString();
-               
-                
+
+                }
+                //s.Append("jsonArray.Add(_json);");
+                jsonArray.Add(_json);
+                //s.Append("newItems--;}");
+                newItems--;
+                codeSource += s.ToString();
+
+
                 return jsonArray;
-                
+
             }
             catch (Exception e) { Debug.WriteLine(e); return null; }
-            
+
         }
 
         #region generate json file
@@ -491,7 +512,7 @@ public class EcommerceObj
         #endregion
 
         #region Build EXE
-        public void BuildConnector( string outputPath, string codeSource)
+        public void BuildConnector(string outputPath, string codeSource)
         {
             try
             {
@@ -501,15 +522,15 @@ public class EcommerceObj
                 //generate exe, not dll
                 parameters.GenerateExecutable = true;
                 // Set the assembly file name to generate.
-                parameters.OutputAssembly ="Out.exe";
+                parameters.OutputAssembly = "Out.exe";
                 parameters.IncludeDebugInformation = true;
-                parameters.ReferencedAssemblies.AddRange(new string[] { "System.IO.dll", "System.Text.RegularExpressions.dll","System.dll", "System.Net.dll", "Newtonsoft.Json.dll", "System.Core.dll", "Microsoft.CSharp.dll", "System.Collections.dll", "System.Linq.dll" });
+                parameters.ReferencedAssemblies.AddRange(new string[] { "System.Threading.Tasks.Extensions.dll", "Microsoft.Extensions.DependencyInjection.Abstractions.dll", "Microsoft.Extensions.DependencyInjection.dll", "Microsoft.Extensions.Hosting.dll", "Microsoft.Extensions.Hosting.Abstractions.dll", "System.IO.dll", "System.Text.RegularExpressions.dll", "System.dll", "System.Net.dll", "Newtonsoft.Json.dll", "System.Core.dll", "Microsoft.CSharp.dll", "System.Collections.dll", "System.Linq.dll" });
                 // Save the assembly as a physical file.
                 parameters.GenerateInMemory = true;
                 //parameters.TempFiles = new TempFileCollection(outputPath, true);
                 // Set compiler argument to optimize output.
                 parameters.CompilerOptions = "/optimize";
-                
+
                 CompilerResults results = codeProvider.CompileAssemblyFromSource(parameters, codeSource);
             }
             catch (Exception ex) { }
