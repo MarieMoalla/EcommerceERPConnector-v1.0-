@@ -136,7 +136,7 @@
                     Name="erpGet"
                     Grid.Row="1" 
                     TextWrapping="Wrap" 
-                    Text="URL..." 
+                    Text="URL or Json Object..." 
                     VerticalAlignment="Top" 
                     Width="177"/>
                 <Button  
